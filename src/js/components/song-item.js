@@ -1,55 +1,54 @@
 import BaseElement from "./base-element.js";
 
-class SongItem extends BaseElement {
-  
+/**
+ * This class is implementation of Song Item 
+ * custom element.
+ */
 
+export class SongItem extends BaseElement {
   constructor() {
     super();
   }
-
+  // main setter property
+  // it is setting rest of the proprtties .
   set songItem(item) {
-  console.log (item) ; 
-  this.title = item.title.label || '' ;
-  this.imageUrl = item['im:image'][2]['label'] || ''; 
-  this.thumbnailImageUrl = item['im:image'][0]['label'] || ''; 
-  this.audioUrl = item.link[1]['attributes'].href || ''; 
-  this.artistName   = item['im:artist'].label 
-  this.artistUrl   = item['im:artist'].attributes.href
-  
+    console.log(item);
+    this.title = item.title.label || "";
+    this.imageUrl = item["im:image"][2]["label"] || "";
+    this.thumbnailImageUrl = item["im:image"][0]["label"] || "";
+    this.audioUrl = item.link[1]["attributes"].href || "";
+    this.artistName = item["im:artist"].label;
+    this.artistUrl = item["im:artist"].attributes.href;
 
-  console.log (this.audioUrl) ; 
-  this.render() ; 
-  
+    // once the properties being set render is called for rendering the HTML
+    this.render();
   }
-get songItem(){
-  this .songItem
-}
+  get songItem() {
+    this.songItem;
+  }
 
-
+  // LifeCycle Method
   connectedCallback() {
     // Seting  a click listener on component
     this.addEventListener("click", e => {
-
       // Custom Event generated with the required details
       let event = new CustomEvent("ItemClicked", {
         detail: {
-          title: this.title ,
+          title: this.title,
           imageUrl: this.imageUrl,
-          audioUrl:this.audioUrl,
-          artistName : this.artistName,
-          artistUrl : this.artistUrl
+          audioUrl: this.audioUrl,
+          artistName: this.artistName,
+          artistUrl: this.artistUrl
         },
         bubbles: true
       });
-      this.dispatchEvent(event);      
+      this.dispatchEvent(event);
     });
-
-   
-
   }
-  render () {
-    this.innerHTML = 
-    `
+
+  // This function is reponsible for rendering the HTML content.
+  render() {
+    this.innerHTML = `
       <style>
       .main-list .media {
         padding-bottom: 1.1em;
@@ -67,99 +66,100 @@ get songItem(){
         line-height: 1.3;
         color: #aab6aa;
       }
+      
+      .song-item{
+        background : #efefef ;
+        padding: 10px ;
+        cursor: pointer;
+       }
+
+       .song-item img {
+         padding-right : 20px ; 
+       } 
+      
 
       </style>
     
     <div class="media song-item">
-          <img class="media-object pull-left" src="${this.thumbnailImageUrl || ''}" alt="..."> 
+          <img class="media-object pull-left" src="${this.thumbnailImageUrl ||
+            ""}" alt="..."> 
           <div class="media-body">
             <h5 class="media-heading">${this.title}</h5>
             <p class="by-artist"> By ${this.artistName}</p>
           </div>
       </div>
-  `
-    ;
-
-
+  `;
   }
-  // Setter 
+  // Setter
   // song property will also reflect as attribute
   set title(name) {
     this.setAttribute("title", name);
   }
-  // Getter  
+  // Getter
   // song property will also reflect as attribute
 
   get title() {
     return this.getAttribute("title");
   }
 
-
-  // Setter 
+  // Setter
   // song Url property will also reflect as attribute
   set songUrl(songUrl) {
     this.setAttribute("song-url", songUrl);
   }
-  // Getter  
+  // Getter
   // song Url property will also reflect as attribute
 
   get songUrl() {
     return this.getAttribute("song-url");
   }
 
-  // Setter 
+  // Setter
   // thumbnail-image-url  Url property will also reflect as attribute
   set thumbnailImageUrl(url) {
-    this.setAttribute("thumbnail-image-url",url);
+    this.setAttribute("thumbnail-image-url", url);
   }
-  // Getter  
+  // Getter
   // thumbnail-image-url Url property will also reflect as attribute
 
   get thumbnailImageUrl() {
     return this.getAttribute("thumbnail-image-url");
   }
 
-
-  // Setter 
+  // Setter
   // song Url property will also reflect as attribute
   set imageUrl(url) {
-    this.setAttribute("image-url",url);
+    this.setAttribute("image-url", url);
   }
-  // Getter  
+  // Getter
   // song Url property will also reflect as attribute
 
   get imageUrl() {
     return this.getAttribute("image-url");
   }
 
-  
-
-// Setter 
+  // Setter
   // audioUrl property will also reflect as attribute
   set audioUrl(url) {
-    this.setAttribute("audio-url",url);
+    this.setAttribute("audio-url", url);
   }
-  // Getter  
+  // Getter
   // audioUrl property will also reflect as attribute
 
   get audioUrl() {
     return this.getAttribute("audio-url");
   }
 
-
-
-// Setter 
+  // Setter
   // artistName property will also reflect as attribute
   set artistName(name) {
-    this.setAttribute("artist-name",name);
+    this.setAttribute("artist-name", name);
   }
-  // Getter  
+  // Getter
   // artistName property will also reflect as attribute
   get artistName() {
     return this.getAttribute("artist-name");
   }
-
-  
 }
 
 customElements.define("song-item", SongItem);

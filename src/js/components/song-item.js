@@ -12,7 +12,6 @@ export class SongItem extends BaseElement {
   // main setter property
   // it is setting rest of the proprtties .
   set songItem(item) {
-    console.log(item);
     this.title = item.title.label || "";
     this.imageUrl = item["im:image"][2]["label"] || "";
     this.thumbnailImageUrl = item["im:image"][0]["label"] || "";

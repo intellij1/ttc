@@ -1,6 +1,8 @@
 import { topTenURL } from "./js/api.js";
 import "./js/components/song-details.js";
 import "./js/components/song-item.js";
+import style from "./main.css";
+
 
 // This will ensure the complete load and song List 
 window.addEventListener("load", () => {

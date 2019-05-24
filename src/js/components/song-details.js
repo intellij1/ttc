@@ -40,8 +40,6 @@ export class SongDetails extends BaseElement {
       * have a image and a text title.
       */
       .featured-detail {
-        width: 482px;
-        height: 350px;
         position: relative;
         margin-bottom: 1em;
       }
@@ -79,7 +77,7 @@ export class SongDetails extends BaseElement {
 
       <div class="featured-detail">
         <div class="row" >
-          <img src="${this.imageUrl}" alt="" class="image-detail">  
+          <img src="${this.imageUrl || ""}" alt="" class="image-detail">  
         </div> 
         <div class="row" >
           <div class="block-title">

@@ -3,8 +3,7 @@ import "./js/components/song-details.js";
 import "./js/components/song-item.js";
 import style from "./main.css";
 
-
-// This will ensure the complete load and song List 
+// This will ensure the complete load and song List
 window.addEventListener("load", () => {
   fetchSongList();
 });
@@ -29,12 +28,11 @@ async function fetchSongList() {
       liElment.append(el);
       ulElment.appendChild(liElment);
     });
-    // appending UL list  in the main tag 
+    // appending UL list  in the main tag
     main.appendChild(ulElment);
 
     const detailElemt = document.createElement("song-details");
     detail.appendChild(detailElemt);
-    
   } catch (e) {
     console.log("Error in fetching data " + e);
   }

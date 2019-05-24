@@ -25,24 +25,32 @@ export class SongItem extends BaseElement {
   get songItem() {
     this.songItem;
   }
+  
+  // click Event Handler
+  handler(e) {
+    // Custom Event generated with the required details
+    let event = new CustomEvent("ItemClicked", {
+      detail: {
+        title: this.title,
+        imageUrl: this.imageUrl,
+        audioUrl: this.audioUrl,
+        artistName: this.artistName,
+        artistUrl: this.artistUrl
+      },
+      bubbles: true
+    });
+    this.dispatchEvent(event);
+  }
 
   // LifeCycle Method
   connectedCallback() {
     // Seting  a click listener on component
-    this.addEventListener("click", e => {
-      // Custom Event generated with the required details
-      let event = new CustomEvent("ItemClicked", {
-        detail: {
-          title: this.title,
-          imageUrl: this.imageUrl,
-          audioUrl: this.audioUrl,
-          artistName: this.artistName,
-          artistUrl: this.artistUrl
-        },
-        bubbles: true
-      });
-      this.dispatchEvent(event);
-    });
+    this.addEventListener("click", this.handler);
+  }
+  
+  // LifeCycle Method
+  detachedCallback() {
+    this.removeEventListener("click", this.handler);
   }
 
   // This function is reponsible for rendering the HTML content.
